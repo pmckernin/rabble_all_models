@@ -1,0 +1,153 @@
+<div class="page-header">
+  <h1>
+    Events
+    <% if user_signed_in? %>
+    <%= link_to icon('plus'), new_event_path, class: "btn btn-lg btn-success" %>
+
+  </h1>
+</div>
+
+<!-- Responsive, Isotope-based layout example -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" id="quicksearch" placeholder="Search Events (start typing)" class="form-control">
+  </div>
+</div>
+
+<hr>
+
+<div class="row isotope-container">
+<% @events.each do |event| %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= event.title.upcase %></h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt>Title</dt>
+          <dd><%= event.title %></dd>
+
+          <dt>Description</dt>
+          <dd><%= event.description %></dd>
+
+          <dt>Start date</dt>
+          <dd><%= event.start_date.strftime("%a %e %l %m %p ") %></dd>
+
+          <dt>End date</dt>
+          <dd><%= event.end_date.strftime("%a %e %l %m %p ")%></dd>
+
+          <dt>Public</dt>
+          <dd><%= event.public %></dd>
+
+          <dt>Creator</dt>
+          <dd><%= event.user.first %></dd>
+
+          <dt>attendances</dt>
+          <% event.attendances.each do |attender| %>
+          <% if attender.user_id == current_user.id %>
+          <dd>
+            <%= attender.user.first %>
+            <%= link_to "Leave", attender, method: :delete, class: "btn btn-danger" %>
+          </dd>
+          <% else %>
+          <dd><%= attender.user.first%> </dd>
+
+          <% end %>
+          <% end %>
+
+          <% if event.attendances.where(:user_id => current_user.id, :event_id => event.id).exists?%>
+
+          <% else %>
+           <%=  render '/attendances/form', attendace: @attendance, event: event, current_user: current_user %>
+
+          <% end %>
+
+
+
+
+
+
+
+
+           <dt>Comments</dt>
+          <% event.comments.each do |comment| %>
+          <% if comment.user_id == current_user.id %>
+          <dd><%= comment.contents %> <%= link_to icon('trash-o'), comment, method: :delete, class: "btn btn-danger" %></dd>
+          <% else %>
+          <dd>
+
+          <%= comment.contents %>
+          </dd>
+
+          <% end %>
+          <% end %>
+        </dl>
+
+        <dd>
+         <%= render '/comments/form', comment: @comment, event: event, current_user: current_user%>
+        </dd>
+
+        <div class="btn-group btn-group-justified">
+          <%= link_to icon('search-plus'), event, class: "btn btn-primary" %>
+
+          <% if current_user.id == event.creator_id %>
+          <%= link_to icon('edit'), edit_event_url(event), class: "btn btn-warning" %>
+
+          <%= link_to icon('trash-o'), event, method: :delete, data: { confirm: "Do you really want to delete this event?" }, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>
+</div>
+
+<!-- JavaScript for Isotope layout and quicksearch -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+<script>
+  $(function() {
+    // quick search regex
+    var qsRegex;
+
+    // init Isotope
+    var $container = $('.isotope-container');
+
+    $container.imagesLoaded(function() {
+      $container.isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'masonry',
+        filter: function() {
+          return qsRegex ? $(this).text().match( qsRegex ) : true;
+        }
+      })
+    });
+
+    // use value of search field to filter
+    var $quicksearch = $('#quicksearch').keyup( debounce( function() {
+      qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+      $container.isotope();
+    }, 200 ) );
+
+  });
+
+  // debounce so filtering doesn't happen every millisecond
+  function debounce( fn, threshold ) {
+    var timeout;
+    return function debounced() {
+      if ( timeout ) {
+        clearTimeout( timeout );
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout( delayed, threshold || 100 );
+    }
+  }
+</script>
+
+<!-- End responsive, Isotope-based layout example -->
