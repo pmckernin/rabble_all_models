@@ -27,6 +27,7 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.new(friend_request_params)
 
     respond_to do |format|
+
       if @friend_request.save
         format.html { redirect_to @friend_request, notice: 'Friend request was successfully created.' }
         format.json { render :show, status: :created, location: @friend_request }
