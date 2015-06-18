@@ -14,6 +14,7 @@
     user.first = auth.info.first_name
     user.last = auth.info.last_name
     user.sex = auth.extra.raw_info.gender
+    user.uid = auth.info.uid
 
 
 

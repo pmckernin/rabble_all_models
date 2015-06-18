@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_scope :user do
 
+get "/public_events", :controller => "public", :action => "index", :as => "directors"
 
 end
   root to: "events#index"
