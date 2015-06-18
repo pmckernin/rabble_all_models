@@ -24,17 +24,29 @@
       </div>
       <div class="panel-body">
         <dl>
-          <dt>User id 1</dt>
+          <dt>From </dt>
           <dd><%= friend_request.user_id_1 %></dd>
+
+          <%= simple_form_for(@accecpted_friend) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.hidden_field :user_id_1, :value =>  friend_request.user_id_1%>
+    <%= f.hidden_field :user_id_2, :value => friend_request.user_id_2 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
 
           <dt>User id 2</dt>
           <dd><%= friend_request.user_id_2 %></dd>
 
         </dl>
         <div class="btn-group btn-group-justified">
-          <%= link_to icon('search-plus'), friend_request, class: "btn btn-primary" %>
 
-          <%= link_to icon('edit'), edit_friend_request_url(friend_request), class: "btn btn-warning" %>
 
           <%= link_to icon('trash-o'), friend_request, method: :delete, data: { confirm: "Do you really want to delete this friend_request?" }, class: "btn btn-danger" %>
         </div>

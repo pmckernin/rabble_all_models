@@ -5,6 +5,7 @@ class FriendRequestsController < ApplicationController
   # GET /friend_requests.json
   def index
     @friend_requests = FriendRequest.all
+    @accecpted_friend = AccecptedFriend.new
   end
 
   # GET /friend_requests/1

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :accecpted_friends
   resources :friend_requests
+  resources :accecpted_friends
+  resources :friend_requests
   resources :comments
   resources :events
   resources :events
