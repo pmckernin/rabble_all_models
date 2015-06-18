@@ -1,0 +1,21 @@
+<ul>
+<% @friends.each do |friend| %>
+
+<li><%= friend["name"] %></li>
+
+<%= simple_form_for(@friend_request) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.hidden_field :user_id_1, :value => current_user.id %>
+    <%= f.hidden_field :user_id_2, :value => friend["id"].to_i%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+  <% end %>
+</ul>
+
