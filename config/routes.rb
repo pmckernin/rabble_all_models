@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   devise_scope :user do
 
 get "/public_events", :controller => "public", :action => "index", :as => "directors"
+get "/stalkers", :controller => "stalkers", :action => "index", :as => "stalkers"
 
 end
   root to: "events#index"
