@@ -1,10 +1,9 @@
 class Attendance < ActiveRecord::Base
 
+  def user
+    User.find(self.user_id)
+  end
 
- validates :user_id, :event_id, {numericality: true, allow_blank: false}
+belongs_to :event
 
-
-
-  belongs_to :user
-  belongs_to :event
 end

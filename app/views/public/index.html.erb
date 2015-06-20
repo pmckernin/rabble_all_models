@@ -47,7 +47,7 @@
           <% if user_signed_in? %>
           <dt>attendances</dt>
           <% event.attendances.each do |attender| %>
-          <% if attender.user_id == current_user.id %>
+          <% if attender.user_uid == current_user.uid %>
           <dd>
             <%= attender.user.first %>
             <%= link_to "Leave", attender, method: :delete, class: "btn btn-danger" %>

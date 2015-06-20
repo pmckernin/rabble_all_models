@@ -24,7 +24,6 @@ class AttendancesController < ApplicationController
   # POST /attendances
   # POST /attendances.json
   def create
-
     @attendance = Attendance.new(attendance_params)
 
     respond_to do |format|
@@ -70,6 +69,6 @@ class AttendancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attendance_params
-      params.require(:attendance).permit(:event_id, :user_id)
+      params.require(:attendance).permit(:user_uid, :user_id, :event_id)
     end
 end

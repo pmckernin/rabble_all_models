@@ -1,15 +1,16 @@
-<% if user_signed_in? %>
 <%= simple_form_for(@attendance) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-  <%= f.hidden_field :event_id, :value => event.id   %>
 
-    <%= f.hidden_field :user_id, :value => current_user.id   %>
+    <%= f.hidden_field :user_uid, :value => current_user.uid %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :event_id, :value => event.id %>
+
+
   </div>
 
-  <div>
-    <%= f.button :submit, "Join" %>
+  <div class="form-actions">
+    <%= f.button :submit %>
   </div>
-<% end %>
 <% end %>

@@ -7,7 +7,9 @@
   </h1>
 </div>
 
-<!-- Responsive, Isotope-based layout example -->
+
+
+
 
 <div class="row">
   <div class="col-xs-12">
@@ -16,10 +18,16 @@
 </div>
 
 <hr>
-<!-- Stuck on how to show events which friends are attending -->
-<%# raise current_user.accecpted_friends.inspect %>
+
 <div class="row isotope-container">
-<% @events.each do |event| %>
+
+<% current_user.accecpted_friends.each do |friend| %>
+<% friend.attending.each do |friend_attending| %>
+<% event = friend_attending.event %>
+
+
+
+
 
 
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
@@ -49,7 +57,7 @@
 
           <dt>attendances</dt>
           <% event.attendances.each do |attender| %>
-          <% if attender.user_id == current_user.id %>
+          <% if attender.user_uid == current_user.uid %>
           <dd>
             <%= attender.user.first %>
             <%= link_to "Leave", attender, method: :delete, class: "btn btn-danger" %>
@@ -104,6 +112,7 @@
       </div>
     </div>
   </div>
+<% end %>
 <% end %>
 <% end %>
 </div>

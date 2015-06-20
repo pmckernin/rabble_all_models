@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :attendances
+  resources :attendaces
   resources :accecpted_friends
   resources :friend_requests
   resources :accecpted_friends

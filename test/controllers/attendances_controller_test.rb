@@ -18,7 +18,7 @@ class AttendancesControllerTest < ActionController::TestCase
 
   test "should create attendance" do
     assert_difference('Attendance.count') do
-      post :create, attendance: { event_id: @attendance.event_id, user_id: @attendance.user_id }
+      post :create, attendance: { event_id: @attendance.event_id, user_id: @attendance.user_id, user_uid: @attendance.user_uid }
     end
 
     assert_redirected_to attendance_path(assigns(:attendance))
@@ -35,7 +35,7 @@ class AttendancesControllerTest < ActionController::TestCase
   end
 
   test "should update attendance" do
-    patch :update, id: @attendance, attendance: { event_id: @attendance.event_id, user_id: @attendance.user_id }
+    patch :update, id: @attendance, attendance: { event_id: @attendance.event_id, user_id: @attendance.user_id, user_uid: @attendance.user_uid }
     assert_redirected_to attendance_path(assigns(:attendance))
   end
 

@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
-    Friend Requests
-
+    Attendaces
+    <%= link_to icon('plus'), new_attendace_path, class: "btn btn-lg btn-success" %>
   </h1>
 </div>
 
@@ -9,51 +9,42 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Friend requests (start typing)" class="form-control">
+    <input type="text" id="quicksearch" placeholder="Search Attendaces (start typing)" class="form-control">
   </div>
 </div>
 
 <hr>
 
 <div class="row isotope-container">
-<% @friend_requests.each do |friend_request| %>
-
-
+<% @attendaces.each do |attendace| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Friend Request from <%= friend_request.user.first.first %></h3>
+        <h3 class="panel-title">Attendace #<%= attendace.id %></h3>
       </div>
       <div class="panel-body">
         <dl>
+          <dt>User uid</dt>
+          <dd><%= attendace.user_uid %></dd>
 
+          <dt>User</dt>
+          <dd><%= attendace.user_id %></dd>
 
-          <%= simple_form_for(@accecpted_friend) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.hidden_field :user_id_1, :value =>  friend_request.user_id_1 %>
-    <%= f.hidden_field :user_id_2, :value => friend_request.user_id_2 %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
-
-
+          <dt>Event</dt>
+          <dd><%= attendace.event_id %></dd>
 
         </dl>
         <div class="btn-group btn-group-justified">
+          <%= link_to icon('search-plus'), attendace, class: "btn btn-primary" %>
 
+          <%= link_to icon('edit'), edit_attendace_url(attendace), class: "btn btn-warning" %>
 
-          <%= link_to icon('trash-o'), friend_request, method: :delete, data: { confirm: "Do you really not want to delete this friends with this person  ?" }, class: "btn btn-danger" %>
+          <%= link_to icon('trash-o'), attendace, method: :delete, data: { confirm: "Do you really want to delete this attendace?" }, class: "btn btn-danger" %>
         </div>
       </div>
     </div>
   </div>
 <% end %>
-
 </div>
 
 <!-- JavaScript for Isotope layout and quicksearch -->

@@ -20,7 +20,7 @@
 end
 
   def accecpted_friends
-   AccecptedFriend.where("user_id_1 == #{self.id} OR user_id_2 ==#{self.id}")
+   AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
   end
 
   has_many :attendances

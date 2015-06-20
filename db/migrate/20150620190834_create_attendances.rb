@@ -1,8 +1,9 @@
 class CreateAttendances < ActiveRecord::Migration
   def change
     create_table :attendances do |t|
-      t.integer :event_id
-      t.integer :user_id
+      t.string :user_uid
+      t.string :user_id
+      t.string :event_id
 
       t.timestamps null: false
     end

@@ -19,6 +19,10 @@
 
 <div class="row isotope-container">
 <% @events.each do |event| %>
+
+
+
+
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -26,6 +30,7 @@
       </div>
       <div class="panel-body">
         <dl>
+
           <dt>Title</dt>
           <dd><%= event.title %></dd>
 
@@ -46,30 +51,23 @@
 
           <dt>attendances</dt>
           <% event.attendances.each do |attender| %>
-          <% if attender.user_id == current_user.id %>
+          <% if attender.user_uid == current_user.uid %>
           <dd>
             <%= attender.user.first %>
             <%= link_to "Leave", attender, method: :delete, class: "btn btn-danger" %>
           </dd>
           <% else %>
-          <dd><%= attender.user.inspect%> </dd>
+          <dd><%= attender.inspect%> </dd>
 
           <% end %>
           <% end %>
 
-          <% if event.attendances.where(:user_id => current_user.id, :event_id => event.id).exists?%>
+          <% if event.attendances.where(:user_uid => current_user.uid, :event_id => event.id).exists?%>
 
           <% else %>
            <%=  render '/attendances/form', attendace: @attendance, event: event, current_user: current_user %>
 
           <% end %>
-
-
-
-
-
-
-
 
            <dt>Comments</dt>
           <% event.comments.each do |comment| %>
@@ -82,6 +80,7 @@
           </dd>
 
           <% end %>
+
           <% end %>
         </dl>
 
