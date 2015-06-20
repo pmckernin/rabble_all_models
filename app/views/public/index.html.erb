@@ -3,7 +3,7 @@
     Events
     <% if user_signed_in? %>
     <%= link_to icon('plus'), new_event_path, class: "btn btn-lg btn-success" %>
-
+    <% end %>
   </h1>
 </div>
 
@@ -39,12 +39,12 @@
           <dt>End date</dt>
           <dd><%= event.end_date.strftime("%a %e %l %m %p ")%></dd>
 
-          <dt>Public</dt>
-          <dd><%= event.public %></dd>
+
 
           <dt>Creator</dt>
           <dd><%= event.user.first %></dd>
 
+          <% if user_signed_in? %>
           <dt>attendances</dt>
           <% event.attendances.each do |attender| %>
           <% if attender.user_id == current_user.id %>

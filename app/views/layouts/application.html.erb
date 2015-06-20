@@ -42,13 +42,19 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 
-          <li><a href="/stalkers">What friends are doing</a></li>
           <li><a href="/public_events">Public Events</a></li>
+          <% if user_signed_in? %>
+          <li><a href="/stalkers">What friends are doing</a></li>
           <li><a href="/potential_friends">Add Friends</a></li>
-          <li><a href="/friend_requests">Friend Requests</a></li>
+          <li><a href="/friend_requests">Friend Requests
+          <% if FriendRequest.count > 0  %>
+          <span class="badge">
+          <%= FriendRequest.count %>
+          <% end %></span>
+        </a></li>
           <li><a href="/accecpted_friends">Friends</a></li>
 
-
+          <% end %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

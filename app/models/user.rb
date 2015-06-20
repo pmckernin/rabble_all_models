@@ -1,3 +1,4 @@
+
   class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -14,13 +15,13 @@
     user.first = auth.info.first_name
     user.last = auth.info.last_name
     user.sex = auth.extra.raw_info.gender
-    user.uid = auth.info.uid
-
-
-
-
+    user.uid = auth.uid
   end
 end
+
+  def accecpted_friends
+   AccecptedFriend.where("user_id_1 == #{self.id} OR user_id_2 ==#{self.id}")
+  end
 
   has_many :attendances
   has_many :comments
