@@ -7,7 +7,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.hidden_field :user_id_1, :value => current_user.id %>
+    <%= f.hidden_field :user_id_1, :value => current_user.uid %>
     <%= f.hidden_field :user_id_2, :value => friend["id"]%>
   </div>
 
