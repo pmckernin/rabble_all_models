@@ -22,7 +22,13 @@
 <div class="row isotope-container">
 
 <% current_user.accecpted_friends.each do |friend| %>
+
+
 <% friend.attending.each do |friend_attending| %>
+
+<% if friend_attending.user_uid == current_user.uid %>
+<% else %>
+
 <% event = friend_attending.event %>
 
 
@@ -112,6 +118,7 @@
       </div>
     </div>
   </div>
+<% end %>
 <% end %>
 <% end %>
 <% end %>
