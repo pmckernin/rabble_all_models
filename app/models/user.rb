@@ -23,6 +23,8 @@ end
    AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
   end
 
+
+
   has_many :attendances
   has_many :comments
 end

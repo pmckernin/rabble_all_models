@@ -8,4 +8,8 @@ def user
 User.where("uid == #{self.user_id_1} OR uid ==#{self.user_id_2}")
 end
 
+def to_friend
+  User.where("uid == #{self.user_id_2}")
+
+end
 end

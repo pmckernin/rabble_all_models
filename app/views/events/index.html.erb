@@ -57,7 +57,7 @@
             <%= link_to "Leave", attender, method: :delete, class: "btn btn-danger" %>
           </dd>
           <% else %>
-          <dd><%= attender.inspect%> </dd>
+          <dd><%=attender.user.first%> </dd>
 
           <% end %>
           <% end %>

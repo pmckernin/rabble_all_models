@@ -4,6 +4,8 @@ class Attendance < ActiveRecord::Base
     User.find(self.user_id)
   end
 
+
+
 belongs_to :event
 
 end
