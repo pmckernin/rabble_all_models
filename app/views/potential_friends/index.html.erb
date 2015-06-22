@@ -1,6 +1,9 @@
 <ul>
 <% @friends.each do |friend| %>
 
+
+
+
 <li><%= friend["name"] %></li>
 
 <%= simple_form_for(@friend_request) do |f| %>

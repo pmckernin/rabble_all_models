@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
 get "/public_events", :controller => "public", :action => "index", :as => "directors"
 get "/stalkers", :controller => "stalkers", :action => "index", :as => "stalkers"
+get "/going_on_today", :controller => "today", :action => "index", :as => "todays"
+
 
 end
   root to: "events#index"

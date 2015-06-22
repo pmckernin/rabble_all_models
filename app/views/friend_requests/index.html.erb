@@ -26,14 +26,16 @@
         <h3 class="panel-title">Friend Request to
         <%= friend_request.to_friend.first.first %></h3>
         <% else %>
-        <h3 class="panel-title">Friend Request from ***display persons name when you get them into the db****</h3>
+        <h3 class="panel-title">Friend Request from
+         <%= friend_request.to_friend.last.first %>
+        </h3>
         <% end %>
       </div>
       <div class="panel-body">
         <dl>
 
 
-<%# unless current_user.uid == friend_request.user_id_1 %>
+<% unless current_user.uid == friend_request.user_id_1 %>
           <%= simple_form_for(@accecpted_friend) do |f| %>
   <%= f.error_notification %>
   <div class="form-inputs">
@@ -45,7 +47,7 @@
     <%= f.button :submit %>
   </div>
 <% end %>
-<%# end %>
+<% end %>
 
 
 
