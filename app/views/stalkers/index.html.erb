@@ -21,19 +21,25 @@
 
 <div class="row isotope-container">
 
-<% current_user.accecpted_friends.each do |friend| %>
+<%#raise current_user.what_friends_are_doing.inspect %>
+
+<%#current_user.accecpted_friends.each do |friend| %>
 
 
-<% friend.attending.each do |friend_attending| %>
+<%#friend.attending.each do |friend_attending| %>
 
-<% if friend_attending.user_uid == current_user.uid %>
-<% else %>
+<%#if friend_attending.user_uid == current_user.uid %>
+<%#else %>
 
-<% event = friend_attending.event %>
+<%#event = friend_attending.event %>
 
+<% current_user.what_friends_are_doing.each do |event| %>
+<%# raise event.first.inspect %>
 
+<%# unless event.attendances. == current_user.uid %>
 
-
+<% event = event.first %>
+<% unless event.start_date >= Time.zone.now.beginning_of_day  %>
 
 
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
@@ -121,7 +127,8 @@
 <% end %>
 <% end %>
 <% end %>
-<% end %>
+
+
 </div>
 
 <!-- JavaScript for Isotope layout and quicksearch -->

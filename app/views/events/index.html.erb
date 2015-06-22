@@ -19,6 +19,7 @@
 
 <div class="row isotope-container">
 <% @events.each do |event| %>
+<% unless event.start_date >= Time.zone.now.beginning_of_day  %>
 
 
 
@@ -100,6 +101,7 @@
       </div>
     </div>
   </div>
+<% end %>
 <% end %>
 <% end %>
 </div>

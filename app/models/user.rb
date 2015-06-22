@@ -23,7 +23,26 @@ end
    AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
   end
 
+  def what_friends_are_doing
+    friends_attending=[]
+    events_being_attended=[]
+    events_to_ignore=[]
+    friends =   AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
+    friends.each do |friend|
+      going = Attendance.where("user_uid == #{friend.user_id_1} OR user_uid ==#{friend.user_id_2}")
+      friends_attending << going
 
+    end
+    friends_attending.each do |event|
+      unless events_to_ignore.include?(event.first.event_id)
+
+        friend_at_event = Event.where(:id => event.first.event_id)
+        events_being_attended << friend_at_event
+        events_to_ignore << event.first.event_id
+      end
+    end
+    return events_being_attended
+  end
 
 
   has_many :attendances
