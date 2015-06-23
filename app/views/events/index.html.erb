@@ -19,7 +19,8 @@
 
 <div class="row isotope-container">
 <% @events.each do |event| %>
-<% unless event.start_date >= Time.zone.now.beginning_of_day  %>
+<% if event.start_date >= Time.zone.now.beginning_of_day  %>
+<% unless event.public  %>
 
 
 
@@ -32,8 +33,7 @@
       <div class="panel-body">
         <dl>
 
-          <dt>Title</dt>
-          <dd><%= event.title %></dd>
+
 
           <dt>Description</dt>
           <dd><%= event.description %></dd>
@@ -43,9 +43,6 @@
 
           <dt>End date</dt>
           <dd><%= event.end_date.strftime("%a %e %l %m %p ")%></dd>
-
-          <dt>Public</dt>
-          <dd><%= event.public %></dd>
 
           <dt>Creator</dt>
           <dd><%= event.user.first %></dd>
@@ -101,6 +98,7 @@
       </div>
     </div>
   </div>
+<% end %>
 <% end %>
 <% end %>
 <% end %>

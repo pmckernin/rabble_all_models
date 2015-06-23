@@ -44,6 +44,14 @@ end
     return events_being_attended
   end
 
+  def events_created_by_friends
+    events_friends_created = []
+
+     friends =   AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
+     friends.each do ||
+      event = Event.where(:creator_id => )
+  end
+
 
   has_many :attendances
   has_many :comments

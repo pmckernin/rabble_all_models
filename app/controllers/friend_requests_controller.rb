@@ -30,7 +30,7 @@ class FriendRequestsController < ApplicationController
     respond_to do |format|
 
       if @friend_request.save
-        format.html { redirect_to @friend_request, notice: 'Friend request was successfully created.' }
+        format.html { redirect_to events_url, notice: 'Friend request was successfully created.' }
         format.json { render :show, status: :created, location: @friend_request }
       else
         format.html { render :new }
