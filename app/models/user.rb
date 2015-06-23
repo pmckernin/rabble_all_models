@@ -47,7 +47,7 @@ end
  def events_friends_created
     events =[]
 
-    friends =   AccecptedFriend.where("user_id_1 = #{self.uid} OR user_id_2 =#{self.uid}")
+    friends =   AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
     friends.each do |creator|
 
       friend_event = Event.where("user_uid == #{creator.user_id_1} OR user_uid ==#{creator.user_id_2}")
