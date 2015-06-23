@@ -19,7 +19,7 @@
 
 
 <div class="row isotope-container">
-<%# raise current_user.events_friends_created.first.inspect %>
+
 <% current_user.events_friends_created.first.each do |friend_event| %>
 
 <% event = friend_event%>
