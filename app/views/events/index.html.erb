@@ -17,10 +17,14 @@
 
 <hr>
 
+
 <div class="row isotope-container">
-<% @events.each do |event| %>
+<%# raise current_user.events_friends_created.first.inspect %>
+<% current_user.events_friends_created.first.each do |friend_event| %>
+
+<% event = friend_event%>
 <% if event.start_date >= Time.zone.now.beginning_of_day  %>
-<% unless event.public  %>
+<% #unless event.public  %>
 
 
 
@@ -101,7 +105,7 @@
 <% end %>
 <% end %>
 <% end %>
-<% end %>
+<%# end %>
 </div>
 
 <!-- JavaScript for Isotope layout and quicksearch -->

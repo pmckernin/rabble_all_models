@@ -7,6 +7,8 @@
     <%= f.input :start_date %>
     <%= f.input :end_date %>
     <%= f.hidden_field :public %>
+    <%= f.hidden_field :user_uid, :value => current_user.uid%>
+
     <%= f.hidden_field :creator_id, :value => current_user.id%>
   </div>
 

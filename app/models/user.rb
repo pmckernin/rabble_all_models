@@ -44,13 +44,20 @@ end
     return events_being_attended
   end
 
-  def events_created_by_friends
-    events_friends_created = []
+ def events_friends_created
+    events =[]
 
-     friends =   AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
-     friends.each do ||
-      event = Event.where(:creator_id => )
+    friends =   AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
+    friends.each do |creator|
+
+      friend_event = Event.where("user_uid == #{creator.user_id_1} OR user_uid ==#{creator.user_id_2}")
+
+      events  << friend_event
+    end
+return events
+
   end
+
 
 
   has_many :attendances
