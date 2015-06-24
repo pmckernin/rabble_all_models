@@ -5,7 +5,7 @@ gem 'simple_form'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'omniauth-facebook'
 gem "koala", "~> 2.0"
-
+gem 'seed_dump'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 group :development do
