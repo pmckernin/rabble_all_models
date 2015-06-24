@@ -19,7 +19,7 @@
 
 
 <div class="row isotope-container">
-
+<% if current_user.events_friends_created.first  %>
 <% current_user.events_friends_created.first.each do |friend_event| %>
 
 <% event = friend_event%>
@@ -102,6 +102,7 @@
       </div>
     </div>
   </div>
+<% end %>
 <% end %>
 <% end %>
 <% end %>
