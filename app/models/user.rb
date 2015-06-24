@@ -20,16 +20,16 @@
 end
 
   def accecpted_friends
-   AccecptedFriend.where("user_id_1 == #{self.uid.to_s} OR user_id_2 ==#{self.uid.to_s}")
+   AccecptedFriend.where("user_id_1 = #{self.uid.to_s} OR user_id_2 =#{self.uid.to_s}")
   end
 
   def what_friends_are_doing
     friends_attending=[]
     events_being_attended=[]
     events_to_ignore=[]
-    friends =   AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
+    friends =   AccecptedFriend.where("user_id_1 = #{self.uid.to_s} OR user_id_2 =#{self.uid.to_s}")
     friends.each do |friend|
-      going = Attendance.where("user_uid == #{friend.user_id_1} OR user_uid ==#{friend.user_id_2}")
+      going = Attendance.where("user_uid = #{friend.user_id_1} OR user_uid =#{friend.user_id_2}")
       friends_attending << going
 
     end
@@ -47,10 +47,10 @@ end
  def events_friends_created
     events =[]
 
-    friends =   AccecptedFriend.where("user_id_1 == #{self.uid} OR user_id_2 ==#{self.uid}")
+    friends =   AccecptedFriend.where("user_id_1 = #{self.uid.to_s} OR user_id_2 =#{self.uid.to_s}")
     friends.each do |creator|
 
-      friend_event = Event.where("user_uid == #{creator.user_id_1} OR user_uid ==#{creator.user_id_2}")
+      friend_event = Event.where("user_uid = #{creator.user_id_1} OR user_uid =#{creator.user_id_2}")
 
       events  << friend_event
     end
